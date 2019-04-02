@@ -1,6 +1,4 @@
-; ----
-; language
-; ----
+
 ;; set language as Japanese
 (set-language-environment 'Japanese)
 ;; coding UTF8
@@ -63,18 +61,16 @@
 
 ;;BEEP disable
 (setq ring-bell-function 'ignore)
-
 ;; delete old back up files automatically
 (setq delete-old-versions t)
 
-;; Font
-(when window-system
-  (set-face-attribute 'default nil
-                      :family "Monaco"
-                      :height 130)
-  (set-fontset-font "fontset-default"
-                    'japanese-jisx0208
-                    '("Hiragino Maru Gothic ProN"))
-  (set-fontset-font "fontset-default"
-                    'katakana-jisx0201
-                    '("Hiragino Maru Gothic ProN")))
+;;
+;; backup の保存先
+;;
+(setq backup-directory-alist
+  (cons (cons ".*" (expand-file-name "~/.emacs.d/backup"))
+        backup-directory-alist))
+
+
+(setq auto-save-file-name-transforms
+  `((".*", (expand-file-name "~/.emacs.d/backup/") t)))
